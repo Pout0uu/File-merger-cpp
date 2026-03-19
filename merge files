@@ -1,0 +1,58 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+
+using namespace std;
+
+void merge_files(const string& file1, const string& file2, const string& output) { // Function to merge two files into a new file
+
+
+    // Open the input files
+ifstream infile1(file1);
+ifstream infile2(file2);
+
+
+// Check if the files were opened successfully
+ if (!infile1.is_open() || !infile2.is_open()) {
+        cerr << "Error opening input files." << endl;
+        return;
+    }
+
+ofstream outfile(output);
+if (!outfile.is_open()) {
+        cerr << "Error opening output file." << endl;
+        return;
+    }
+
+    string w1, w2;
+    bool has1 = bool(infile1 >> w1); // Check if there are more words in the first file
+    bool has2 = bool(infile2 >> w2); // Check if there are more words in the second file
+
+    while (has1 && has2) { // Loop until we reach the end of either file
+
+
+
+   if(w1<w2){
+     outfile << w1 << " ";
+        has1 = bool(infile1 >> w1); // Read the next word from the first file
+      
+    } else {
+        outfile << w2 << " ";
+        has2 = bool(infile2 >> w2); // Read the next word from the second file
+        
+            }
+        }
+    
+
+  if(has1 == false){ // If the first file has no more words, write the remaining words from the second file
+                while (has2) {
+                    outfile << w2 << " ";
+                    has2 = bool(infile2 >> w2);
+                }}
+
+   if(has2 == false){ // If the second file has no more words, write the remaining words from the first file
+            while (has1) {
+                outfile << w1 << " ";
+                has1 = bool(infile1 >> w1);
+            }
+}}
