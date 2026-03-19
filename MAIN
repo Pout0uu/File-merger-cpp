@@ -1,6 +1,6 @@
 int main(){
 
-    merge_files("C:\\Users\\pouto\\Documents\\text1.txt", "C:\\Users\\pouto\\Documents\\text2.txt", "output.txt"); // Call the function to merge the files
+    merge_files("text1.txt", "text2.txt", "output.txt"); // Call the function to merge the files
      system("notepad output.txt");
     return 0;
 }
